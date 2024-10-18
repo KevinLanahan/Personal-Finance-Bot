@@ -1,0 +1,80 @@
+body {
+    background-color: rgb(32, 32, 32);
+    font-family: 'Montserrat';
+}
+
+#chat {
+    width: 300px;
+    margin: 100px auto 0;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    overflow-y: auto;
+}
+
+#messages {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.user {
+    align-self: flex-end;
+    background-color: #90c4ff;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.bot {
+    align-self: flex-start;
+    background-color: #d1d1d1;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+button {
+    width: 90px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50px;
+    height: 40px;
+    border: 1px solid transparent;
+}
+
+input {
+    border-radius: 30px;
+    height: 40px;
+    padding-left: 10px;
+    background-color: grey;
+    color: white;
+    border: 1px solid transparent;
+}
+
+input::placeholder {
+    color: rgb(198, 198, 198);
+}
+
+label {
+    display: block; 
+    margin: 0 auto; 
+    text-align: center;
+    padding: 10px;
+    font-size: 2vw;
+    color: white;
+    font-weight: 100;
+}
+
+h3, a{
+    display: inline;
+    padding: 20px;
+    color: white;
+    font-weight: 200;
+    text-decoration: none;
+    font-size: 1.5vw;
+}
