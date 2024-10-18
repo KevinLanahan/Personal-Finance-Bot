@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Finance Bot</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+        </style>
+</head>
+<body>
+
+    <h3><a href="https://github.com/KevinLanahan">GitHub</a></h3>
+    <h3><a href="https://www.linkedin.com/in/kevin-lanahanjr/">LinkedIn</a></h3>
+
+
+    <div id="chat">
+        <Label>Personal Finance Bot</Label>
+        <div id="messages"></div>
+        <input type="text" id="message-input" placeholder="Ask me a question about personal finance!">
+        <button id="send-button">Send</button>
+    </div>
+
+    <script>
+        const messagesDiv = document.getElementById('messages');
+        const input = document.getElementById('message-input');
+        const button = document.getElementById('send-button');
+
+        button.onclick = async () => {
+            const userMessage = input.value;
+            if (!userMessage) return;
+
+            addMessage('user', userMessage);
+            input.value = '';
+
+            addMessage('bot', '...');
+            const response = await fetch('/ask', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `message=${encodeURIComponent(userMessage)}`
+            });
+            const data = await response.json();
+            messagesDiv.removeChild(messagesDiv.lastChild); 
+            addMessage('bot', data.response);
+        };
+
+        function addMessage(sender, text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = sender;
+            messageDiv.innerText = text;
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight; 
+        }
+    </script>
+
+</body>
+</html>
+
